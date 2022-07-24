@@ -70,7 +70,7 @@ int main() {
 
     //Choose random word
     srand((unsigned)time(NULL));
-    int wordnum = rand() % NUMWORDS + 1;
+    int wordnum = rand() % NUMWORDS;
     strcpy(word, wordbank[wordnum]);
     int wordlength = strlen(word);
 

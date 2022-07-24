@@ -11,3 +11,6 @@ Current known missing features:
 Display previously guessed incorrect letters  
 Allow a set number of incorrect guesses  
 
+# Changelog
+0.1
+First attempt

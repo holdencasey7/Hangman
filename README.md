@@ -11,6 +11,7 @@ Allow a set number of incorrect guesses
 # Changelog
 0.2  
 Fixed repeat correct letter bug  
+Fixed repeat guessed letter bug  
 Changed how wordbank.txt filepath is retrieved  
 Displays guessed letters  
 Now shows number of incorrect guesses instead of total guesses  

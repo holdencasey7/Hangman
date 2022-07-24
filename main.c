@@ -3,13 +3,17 @@
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #define MAXSIZE 10
 #define NUMLINES 11
 
 int main() {
     //Creates reference to wordbank.txt file
-    static const char *pathname = "/Users/holdencasey/Documents/Coding Practice/Hangman/wordbank.txt";
+    /*static const*/ char *pathname/* = "/Users/holdencasey/Documents/Coding Practice/Hangman/wordbank.txt"*/;
+    pathname = malloc(sizeof(char) * 200);
+    getcwd(pathname, 200);
+    strcat(pathname, "/wordbank.txt");
     FILE *fp = fopen(pathname, "r");
     if (fp == NULL) {
         perror("Could not open wordbank file");

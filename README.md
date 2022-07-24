@@ -8,6 +8,9 @@ Some issues may occur with wordbank.txt filepath.
 Current known missing features:   
 Allow a set number of incorrect guesses  
 
+# Purpose
+The goal of this project was to develop and expand my capabilities in the C language after taking various online courses. Concepts included file input, standard input/output, memory allocation, pointers/arrays, string manipulation, and basic logic/flow control. A secondary goal was to continue learning the non-programming side of project building, such as using GitHub properly, keeping track of changes and bug fixes, and documenting the coding process.
+
 # Changelog
 0.2  
 Fixed repeat correct letter bug  

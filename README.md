@@ -2,6 +2,7 @@
 A basic letter guessing word game in C
 
 Current known bugs:  
+Number of incorrect guesses undercounts in some instances  
 
 Current known missing features:   
 Allow a set number of incorrect guesses  

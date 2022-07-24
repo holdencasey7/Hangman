@@ -1,3 +1,8 @@
+/* To-do list
+ * TODO: cap incorrect guesses
+ * TODO: make file an array of words
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,8 +15,12 @@
 
 int main() {
     //Creates reference to wordbank.txt file
-    /*static const*/ char *pathname/* = "/Users/holdencasey/Documents/Coding Practice/Hangman/wordbank.txt"*/;
+    char *pathname;
     pathname = malloc(sizeof(char) * 200);
+    if (pathname == NULL) {
+        perror("Memory error");
+        exit(1);
+    }
     getcwd(pathname, 200);
     strcat(pathname, "/wordbank.txt");
     FILE *fp = fopen(pathname, "r");
@@ -46,10 +55,22 @@ int main() {
     //Put spaces for letters
     char *answer;
     answer = malloc(sizeof(char) * MAXSIZE);
+    if (answer == NULL) {
+        perror("Memory error");
+        exit(1);
+    }
     for (int i = 0; i < wordlength; i++) {
         strcat(answer, "_");
     }
     printf("%s (%d letters)\n", answer, wordlength);
+
+    //Store guesses
+    char *guesses;
+    guesses = malloc(sizeof(char) * 30);
+    if (guesses == NULL) {
+        perror("Memory error");
+        exit(1);
+    }
 
     //Guessing logic
     char guess;
@@ -61,18 +82,33 @@ int main() {
         guess = getchar();
         fflush(stdin);
         guess = toupper(guess);
-        for (int i = 0; i < wordlength; i++) {
-            if (word[i] == guess) {
-                answer[i] = guess;
-                correct++;
+        int guessed = 0;
+        //Check if previously guessed
+        for(int i = 0; i < guesscount; i++) {
+            if (guesses[i] == guess) {
+                printf("You already guessed %c.\n", guess);
+                guessed = 1;
             }
         }
-        guesscount++;
-        printf("%s\n", answer);
+        //Only count towards a guess if not already guessed
+        if (guessed == 0) {
+            guesses[guesscount] = guess;
+            for (int i = 0; i < wordlength; i++) {
+                if (word[i] == guess) {
+                    answer[i] = guess;
+                    correct++;
+                }
+            }
+            guesscount++;
+            printf("%s\n", answer);
+        }
+        //Display guessed letters
+        printf("Guessed letters: %s\n", guesses);
     }
 
     //End of game
-    printf("Congratulations! You guessed %s in %d guesses!\n", word, guesscount);
+    printf("Congratulations! You guessed %s with %d incorrect guess%s!\n",
+           word, guesscount - correct, guesscount - correct == 1 ? "" : "es");
     fclose(fp);
     return 0;
 }

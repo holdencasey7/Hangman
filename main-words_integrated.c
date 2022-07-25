@@ -96,9 +96,11 @@ int main() {
 
     //Guessing logic
     char guess;
+    int correctguesses = 0;
+    int correctletters = 0;
     int correct = 0;
     int guesscount = 0;
-    while (correct != wordlength) {
+    while (correctletters != wordlength) {
         //Take in guess
         printf("Enter a character to guess: ");
         guess = getchar();
@@ -118,8 +120,13 @@ int main() {
             for (int i = 0; i < wordlength; i++) {
                 if (word[i] == guess) {
                     answer[i] = guess;
-                    correct++;
+                    correct = 1;
+                    correctletters++;
                 }
+            }
+            if (correct == 1) {
+                correct = 0;
+                correctguesses++;
             }
             guesscount++;
             printf("%s\n", answer);
@@ -130,6 +137,6 @@ int main() {
 
     //End of game
     printf("Congratulations! You guessed %s with %d incorrect guess%s!\n",
-           word, guesscount - correct, guesscount - correct == 1 ? "" : "es");
+           word, guesscount - correctguesses, guesscount - correctguesses == 1 ? "" : "es");
     return 0;
 }

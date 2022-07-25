@@ -1,6 +1,5 @@
 /* To-do list
  * TODO: cap incorrect guesses
- * TODO: differentiate incorrect letters when showing guessed letters
  */
 
 #include <stdio.h>
